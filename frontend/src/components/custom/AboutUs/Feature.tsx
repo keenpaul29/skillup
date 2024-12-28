@@ -1,14 +1,14 @@
-import { useDispatch } from "react-redux";
-import { showPopup } from "@/feature/popupSlice";
+import { useNavigate } from "react-router-dom";
 import { skillSetAboutUsData } from "@/constants";
 import { CircleCheck } from "lucide-react";
 
 const Feature = () => {
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleFormShow = function () {
-    dispatch(showPopup());
+  const handleFormShow = () => {
+    navigate("/contact");
   };
+
   return (
     <div className="w-full h-full lg:h-screen  flex flex-col lg:flex-row items-center justify-center">
       <div className="w-full lg:w-1/2 pl-4 lg:h-screen flex items-start lg:justify-between flex-col overflow-hidden">

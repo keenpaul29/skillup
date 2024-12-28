@@ -1,13 +1,13 @@
-import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import ShinyButton from "../magicui/shiny-button";
-import { showPopup } from "@/feature/popupSlice";
 
 const Banner = () => {
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleFormShow = function () {
-    dispatch(showPopup());
+  const handleFormShow = () => {
+    navigate("/contact");
   };
+
   return (
     <div className="w-full bg-green-primary h-28 mt-20 lg:mt-32 flex items-center justify-center">
       <div className="w-full lg:w-[80%] mx-auto flex items-center justify-center lg:justify-between">
