@@ -52,13 +52,13 @@ const formSchema = z.object({
 });
 
 const SkillUpForm = () => {
-  const [isVisible, setIsVisible] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const formRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (formRef.current && !formRef.current.contains(event.target as Node)) {
-        setIsVisible(false);
+        // setIsVisible(false);
       }
     };
 
@@ -67,7 +67,6 @@ const SkillUpForm = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -87,7 +86,7 @@ const SkillUpForm = () => {
       .post(`${import.meta.env.VITE_BACKEND}/submit`, values)
       .then((_) => {
         form.reset();
-        setIsVisible(false);
+        // setIsVisible(false);
         toast({
           title: "Form Submitted",
           description: "Your form has been successfully submitted!",
@@ -130,7 +129,7 @@ const SkillUpForm = () => {
                 <FormControl>
                   <Input placeholder="Full Name" {...field} />
                 </FormControl>
-                <FormMessage/>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -147,7 +146,7 @@ const SkillUpForm = () => {
                 <FormControl>
                   <Input placeholder="Email" {...field} />
                 </FormControl>
-                <FormMessage/>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -164,7 +163,7 @@ const SkillUpForm = () => {
                 <FormControl>
                   <Input placeholder="Phone Number" {...field} />
                 </FormControl>
-                <FormMessage/>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -188,12 +187,18 @@ const SkillUpForm = () => {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="Graduated / pursuing">Graduated / Pursuing</SelectItem>
-                    <SelectItem value="Masters / pursuing">Masters / Pursuing</SelectItem>
-                    <SelectItem value="Diploma / pursuing">Diploma / Pursuing</SelectItem>
+                    <SelectItem value="Graduated / pursuing">
+                      Graduated / Pursuing
+                    </SelectItem>
+                    <SelectItem value="Masters / pursuing">
+                      Masters / Pursuing
+                    </SelectItem>
+                    <SelectItem value="Diploma / pursuing">
+                      Diploma / Pursuing
+                    </SelectItem>
                   </SelectContent>
                 </Select>
-                <FormMessage/>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -212,7 +217,7 @@ const SkillUpForm = () => {
                     {...field}
                   />
                 </FormControl>
-                <FormMessage/>  
+                <FormMessage />
               </FormItem>
             )}
           />

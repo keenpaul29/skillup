@@ -6,10 +6,14 @@ const Signup = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
-    const handleSignup = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // Add signup logic here
-        console.log('Signing up with:', { username, email, password });
+        try {
+            // Add signup logic here
+            console.log('Signing up with:', { username, email, password });
+        } catch (err) {
+            setError(err instanceof Error ? err.message : 'An error occurred during signup');
+        }
     };
 
     return (

@@ -4,8 +4,6 @@ import Footer from "./components/shared/Footer";
 import PopupForm from "./components/shared/PopupForm";
 import { Toaster } from "./components/ui/toaster";
 import ScrollToTop from "./components/custom/ScrollToTop";
-import Login from "./components/admin/Login";
-import Signup from "./components/admin/Signup";
 
 function App() {
   return (

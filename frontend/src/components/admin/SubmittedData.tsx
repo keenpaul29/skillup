@@ -1,6 +1,14 @@
-import React from 'react';
+interface SubmittedDataProps {
+    data: {
+        username: string;
+        email: string;
+        phonenumber: string;
+        qualification: string;
+        message: string;
+    }
+}
 
-const SubmittedData = ({ data }) => {
+const SubmittedData = ({ data }: SubmittedDataProps) => {
     return (
         <div className="mt-4 p-4 border rounded bg-gray-50">
             <h3 className="text-lg font-bold">Submitted Data</h3>

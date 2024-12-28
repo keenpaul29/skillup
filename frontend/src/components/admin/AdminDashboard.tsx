@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import useFetchFormData from '../../hooks/useFetchFormData';
 import Login from './Login';
 import Signup from './Signup';
