@@ -1,5 +1,4 @@
 const express = require('express');
-// Import the routes
 const mongoose = require('mongoose');
 const FormSubmission = require('./FormSubmission');
 const dotenv = require('dotenv');
@@ -16,7 +15,6 @@ mongoose.connect(process.env.MONGODB_URI, {
 .catch(err => console.error('MongoDB connection error:', err));
 
 const app = express();
-const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors());
@@ -35,14 +33,12 @@ app.post('/submit', async (req, res) => {
 
 app.get("/", (req, res) => {
     res.send("Hello World!");
-})
+});
 
 // Sample endpoint
 app.get('/api', (req, res) => {
     res.json({ message: 'Welcome to the Skillup API!' });
 });
 
-// Start the server
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+// Export the Express app as a serverless function
+module.exports = app;
