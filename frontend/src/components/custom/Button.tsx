@@ -1,5 +1,6 @@
 import ShinyButton from "../magicui/shiny-button";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { showPopup } from "@/feature/popupSlice";
 
 const Button = ({
   text,
@@ -8,10 +9,10 @@ const Button = ({
   text: string;
   classname?: string;
 }) => {
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleFormShow = () => {
-    navigate("/contact");
+    dispatch(showPopup());
   };
 
   return (

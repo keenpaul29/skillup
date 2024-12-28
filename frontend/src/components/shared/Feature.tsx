@@ -1,12 +1,13 @@
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { CircleCheck } from "lucide-react";
 import { skillSetData } from "@/constants";
+import { showPopup } from "@/feature/popupSlice";
 
 const Feature = () => {
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleFormShow = () => {
-    navigate("/contact");
+    dispatch(showPopup());
   };
 
   return (

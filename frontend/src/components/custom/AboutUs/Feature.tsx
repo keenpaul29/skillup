@@ -1,12 +1,13 @@
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { showPopup } from "@/feature/popupSlice";
 import { skillSetAboutUsData } from "@/constants";
 import { CircleCheck } from "lucide-react";
 
 const Feature = () => {
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleFormShow = () => {
-    navigate("/contact");
+    dispatch(showPopup());
   };
 
   return (
@@ -18,7 +19,7 @@ const Feature = () => {
         </h1>
         <p className=" w-[90%] mx-auto lg:w-[70%] lg:mx-0 text-center lg:text-left font-medium text-lg mt-5">
           Supercharge your career with our expert-led programs, meticulously
-          designed to equip you with the most sought-after skills for today’s
+          designed to equip you with the most sought-after skills for today's
           competitive job market.
         </p>
         <button
@@ -41,7 +42,7 @@ const Feature = () => {
         </h1>
         <h2 className="mx-auto text-center px-8 my-2 text-lg">
           Choosing Hubnex Skillup is choosing a future filled with
-          opportunities. Here’s why we stand out:
+          opportunities. Here's why we stand out:
         </h2>
         {skillSetAboutUsData.map((skill) => (
           <div className="w-[95%] p-4 flex gap-2" key={skill.label}>

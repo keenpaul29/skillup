@@ -79,30 +79,40 @@ const SkillUpForm = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    setIsLoading(true);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      setIsLoading(true);
+      console.log('Submitting form with values:', values);
 
-    axios
-      .post(`${import.meta.env.VITE_BACKEND}/submit`, values)
-      .then((_) => {
-        form.reset();
-        // setIsVisible(false);
-        toast({
-          title: "Form Submitted",
-          description: "Your form has been successfully submitted!",
-        });
-      })
-      .catch((err) => {
-        console.error(err.response ? err.response.data : err);
-        toast({
-          title: "Submission Failed",
-          description: "There was an error submitting the form.",
-          variant: "destructive",
-        });
-      })
-      .finally(() => {
-        setIsLoading(false);
+      const response = await axios.post(`${process.env.VITE_BACKEND}/submit`, values, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
       });
+
+      console.log('Form submission response:', response);
+      
+      setIsLoading(false);
+      form.reset();
+      toast({
+        title: "Success",
+        description: "Your form has been successfully submitted!",
+      });
+    } catch (error: any) {
+      setIsLoading(false);
+      console.error('Form submission error:', {
+        message: error.message,
+        response: error.response?.data,
+        status: error.response?.status
+      });
+      
+      toast({
+        title: "Error",
+        description: error.response?.data?.error || "Failed to submit form. Please try again.",
+        variant: "destructive",
+      });
+    }
   }
 
   return (

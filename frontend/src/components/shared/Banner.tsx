@@ -1,11 +1,12 @@
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import ShinyButton from "../magicui/shiny-button";
+import { showPopup } from "@/feature/popupSlice";
 
 const Banner = () => {
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleFormShow = () => {
-    navigate("/contact");
+    dispatch(showPopup());
   };
 
   return (
@@ -26,7 +27,7 @@ const Banner = () => {
         </div>
         <div>
           <ShinyButton onClick={handleFormShow}>
-            <div className="flex items-center gap-3 bg-white py-2 px-4 rounded-sm text-xs lg:text-lg      text-green-quaternary">
+            <div className="flex items-center gap-3 bg-white py-2 px-4 rounded-sm text-xs lg:text-lg text-green-quaternary">
               Enroll Now <img src="/icons/arrgreen.svg" alt="right arrow" />
             </div>
           </ShinyButton>
