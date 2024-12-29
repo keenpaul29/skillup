@@ -84,7 +84,7 @@ const SkillUpForm = () => {
       setIsLoading(true);
       console.log('Submitting form with values:', values);
 
-      const response = await axios.post(`${process.env.VITE_BACKEND}/submit`, values, {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND}/submit`, values, {
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'

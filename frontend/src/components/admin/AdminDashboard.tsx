@@ -25,7 +25,7 @@ const AdminDashboard = () => {
     const fetchFormData = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('http://localhost:5000/api/form-data-all');
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND}/api/form-data-all`);
         if (Array.isArray(response.data)) {
           setFormData(response.data);
         } else {

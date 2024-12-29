@@ -4,7 +4,6 @@ import {
   Feature,
   Hero,
   Experience,
-  Overlay,
   PromotionCompany,
   Stripe,
   Banner,
@@ -40,15 +39,10 @@ const LandingPage = () => {
     setPopupVisible(isOpen);
   }, []);
 
-  const handleClose = () => {
-    setPopupVisible(true);
-    //All the things
-    localStorage.setItem("popupClosed", "true");
-  };
 
   return (
     <div className="w-full relative">
-      {!isPopupVisible && <Overlay handleClose={handleClose} />}
+      
 
       <Stripe />
       <Hero />

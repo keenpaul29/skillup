@@ -6,6 +6,8 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
+// console.log('MONGODB_URI:', process.env.MONGODB_URI); // Log the MongoDB URI
+
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
@@ -17,12 +19,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 const app = express();
 
 // Middleware
-app.use(cors({
-    origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
-    credentials: true,
-    methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type', 'Accept']
-}));
+app.use(cors());
 
 app.use(bodyParser.json());
 
@@ -90,7 +87,7 @@ app.get("/", (req, res) => {
     res.json({ message: 'Welcome to the Skillup API!' });
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
 });

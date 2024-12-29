@@ -2,7 +2,7 @@ export { default as Certification } from "./custom/Landing/Certification";
 export { default as Hero } from "./custom/Landing/Hero";
 export { default as Feature } from "./shared/Feature";
 export { default as Experience } from "./custom/Experience";
-export { default as Overlay } from "./custom/Overlay";
+// export { default as Overlay } from "./custom/Overlay";
 export { default as PromotionCompany } from "./custom/PromotionCompany";
 export { default as Stripe } from "./shared/Stripe";
 export { default as Learner } from "./shared/Learner";
