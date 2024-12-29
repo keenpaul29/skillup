@@ -62,13 +62,13 @@ const AdminDashboard = () => {
   if (!isAuthenticated) {
     return (
       <div className="admin-dashboard p-6 bg-gray-100 min-h-screen">
-        <h1 className="text-4xl font-bold text-center mb-6">Admin Dashboard</h1>
-        <div>
-          <button onClick={toggleForm} className="bg-blue-500 text-white rounded py-2 px-4 mb-4">
+        <h1 className="text-4xl font-bold text-center mb-6 text-green-primary">Admin Dashboard</h1>
+        <div className="flex justify-center">
+          <button onClick={toggleForm} className="bg-green-primary text-white rounded py-2 px-4 mb-4 hover:bg-green-secondary transition-colors">
             {isLogin ? 'Switch to Signup' : 'Switch to Login'}
           </button>
-          {isLogin ? <Login onLoginSuccess={handleLoginSuccess} /> : <Signup />}
         </div>
+        {isLogin ? <Login onLoginSuccess={handleLoginSuccess} /> : <Signup />}
       </div>
     );
   }
@@ -92,21 +92,21 @@ const AdminDashboard = () => {
   return (
     <div className="admin-dashboard p-6 bg-gray-100 min-h-screen">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-4xl font-bold">Admin Dashboard</h1>
+        <h1 className="text-4xl font-bold text-green-primary">Admin Dashboard</h1>
         <button 
           onClick={handleLogout} 
-          className="bg-red-500 text-white rounded py-2 px-4 hover:bg-red-600 transition-colors"
+          className="bg-red-primary text-white rounded py-2 px-4 hover:bg-red-600 transition-colors"
         >
           Sign Out
         </button>
       </div>
       
       <div className="container mx-auto">
-        <h2 className="text-2xl font-bold mb-6">Form Submissions</h2>
+        <h2 className="text-2xl font-bold mb-6 text-green-tertiary">Form Submissions</h2>
         {formData.length > 0 ? (
-          <div className="overflow-x-auto bg-green-primary rounded-lg shadow">
+          <div className="overflow-x-auto bg-white rounded-lg shadow">
             <table className="min-w-full">
-              <thead className="bg-gray-50">
+              <thead className="bg-green-primary text-white">
                 <tr>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
@@ -118,7 +118,7 @@ const AdminDashboard = () => {
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {formData.map((submission) => (
-                  <tr key={submission._id} className="hover:bg-gray-50">
+                  <tr key={submission._id} className="hover:bg-green-light transition-colors">
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{submission.username}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{submission.email}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{submission.phonenumber}</td>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 interface LoginProps {
     onLoginSuccess: () => void;
@@ -11,12 +12,20 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
 
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // Mock authentication logic
-        if (email === 'admin@example.com' && password === 'password') {
-            console.log('Login successful');
-            onLoginSuccess(); // Call the success handler
-        } else {
-            setError('Invalid email or password');
+        try {
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND}/api/login`, {
+                email,
+                password,
+            });
+            if (response.data.success) {
+                console.log('Login successful');
+                onLoginSuccess(); // Call the success handler
+            } else {
+                setError('Invalid email or password');
+            }
+        } catch (err) {
+            setError('An error occurred during login');
+            console.error(err);
         }
     };
 

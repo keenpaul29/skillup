@@ -3,10 +3,9 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
+const User = require('./User'); // Import the User model
 
 dotenv.config();
-
-// console.log('MONGODB_URI:', process.env.MONGODB_URI); // Log the MongoDB URI
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
@@ -20,7 +19,6 @@ const app = express();
 
 // Middleware
 app.use(cors());
-
 app.use(bodyParser.json());
 
 // Error handling middleware
@@ -80,6 +78,41 @@ app.get('/api/form-data-all', async (req, res) => {
     } catch (error) {
         console.error('Error fetching form data:', error);
         res.status(500).json({ error: 'Failed to fetch form data' });
+    }
+});
+
+// Login endpoint
+app.post('/api/login', async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        const user = await User.findOne({ email });
+        if (!user || !(await user.comparePassword(password))) {
+            return res.status(401).json({ success: false, message: 'Invalid email or password' });
+        }
+        res.json({ success: true, message: 'Login successful' });
+    } catch (error) {
+        console.error('Login error:', error);
+        res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+});
+
+// Signup endpoint
+app.post('/api/signup', async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        // Check if the user already exists
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json({ success: false, message: 'User already exists' });
+        }
+
+        // Create a new user
+        const newUser = new User({ email, password });
+        await newUser.save();
+        res.status(201).json({ success: true, message: 'User registered successfully' });
+    } catch (error) {
+        console.error('Signup error:', error);
+        res.status(500).json({ success: false, message: 'Internal server error' });
     }
 });
 
